@@ -1,7 +1,12 @@
 package monopoly;
 
+import static monopoly.Monopoly.spaces;
+import static monopoly.Monopoly.board;
 import javax.swing.JOptionPane;
 import static monopoly.Monopoly.TITLE;
+import static monopoly.Monopoly.IMAGE_FILE;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  * Players.java - to create players
@@ -11,30 +16,33 @@ import static monopoly.Monopoly.TITLE;
  */
 public class Player {
 
-    private int cash;
-    public int turns;
-    static String name;
+    private int turns;
+    public int cash;
+    public String name;
     public int people;
     private int space;
     private boolean jailed;
 
     /**
-     * set the player with cash and name
      *
      */
+    public Player() {
+        cash = 1000000;
+        name = "Bank";
+    }
+
     public Player(String name) {
         jailed = false;
         this.name = name;
-        cash = 1500;
         space = 0;
-
+        cash = 1500;
     }
 
     /**
-     * to take turns on each player
+     * To create dices
      */
     public void takeTurn() {
-        System.out.println("turn start " + name);
+        System.out.println("turn start " + name + "\n$" + cash);
         if (jailed == false) {
             int doubles = 0;
             boolean isDouble = roll();
@@ -44,18 +52,10 @@ public class Player {
                 doubles++;
                 System.out.println("is double " + isDouble);
                 if (doubles == 2) {
-                    System.out.println("Go to Jail");
-                    jailed = true;
-                    turns = 0;
+                    goToJail();
+
                 }
             }
-
-            checkSpace();
-
-            if (cash == 0) {
-                System.out.println("you lose");
-            }
-            System.out.println("turn end");
         } else {
             turns++;
             if (roll() == true || turns == 3) {
@@ -63,7 +63,9 @@ public class Player {
             } else {
                 System.out.println("Stay in jail!");
             }
-
+        }
+        if (cash == 0) {
+            System.out.println("you lose");
         }
     }
 
@@ -84,12 +86,6 @@ public class Player {
 
     }
 
-    
-    
-    /**
-     *
-     * @return if the roll was the same its true if not then false
-     */
     private boolean roll() {
         int dice1 = random(1, 6);
         int dice2 = random(1, 6);
@@ -98,6 +94,7 @@ public class Player {
         System.out.println("dice1 " + dice1 + "\ndice2 " + dice2);
         if (jailed == false) {
             move(move);
+            checkSpace();
         }
         if (dice1 == dice2) {
             return true;
@@ -105,24 +102,79 @@ public class Player {
         return false;
     }
 
-    /**
-     *
-     * @param move the players
-     */
     private void move(int move) {
         for (int i = 0; i < move; i++) {
             space++;
             if (space == 40) {
                 space = 0;
+                cash += 200;
             }
         }
 
         System.out.println("space = " + space);
     }
 
-    private void checkSpace() {
-        for (int i = 0; i < 40; i++) {
+    public void checkSpace() {
+        String message = name + " landed on " + spaces[space].name;
+        output(message);
+        if (space == 29) {
+            goToJail();
+        } else if (spaces[space].isProperty == true) {
+            if (spaces[space].owned == false) {
+                propose();
+            } else if (spaces[space].owned == true) {
+                this.cash -= spaces[space].rent;
+                (spaces[space].owner).cash += spaces[space].rent;
+                System.out.println(this.name + " payed "
+                        + spaces[space].owner.name + " $" + spaces[space].rent);
+            }
+        } else {
+            cash = cash - spaces[space].rent;
+        }
+    }
 
+    public void goToJail() {
+        output("Go to jail!");
+        jailed = true;
+        space = 10;
+        turns = 0;
+    }
+
+    private void output(String text) {
+        Icon picture = new ImageIcon(IMAGE_FILE);
+        JOptionPane.showMessageDialog(
+                null,
+                text,
+                TITLE,
+                JOptionPane.INFORMATION_MESSAGE,
+                picture);
+
+    }
+
+    private void propose() {
+        String name = spaces[space].name;
+        int price = spaces[space].price;
+        output(name, price);
+    }
+
+    private void output(String name, int price) {
+        Icon picture = new ImageIcon(IMAGE_FILE);
+        String message = "Would you like to buy " + name + " for $"
+                + price + "?";
+        String[] options = {"YES", "NO"};
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                message,
+                TITLE,
+                0,
+                0,
+                picture,
+                options,
+                0);
+        if (choice == 0 && cash >= spaces[space].price) {
+            spaces[space].buy();
+        } else {
+            System.out.println("Too Poor!");
         }
     }
 }

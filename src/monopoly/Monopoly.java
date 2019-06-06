@@ -1,6 +1,12 @@
 package monopoly;
 
-
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -17,6 +23,9 @@ public class Monopoly {
     final static String IMAGE_FILE = "C:\\Users\\r.pablo\\Desktop\\Monopoly.png";
     static Player[] players;
     static Space[] spaces;
+    static int turn = 0;
+    static Board board;
+    static Player bank;
 
     /**
      * @param args the command line arguments
@@ -59,6 +68,7 @@ public class Monopoly {
     }
 
     private static void setupGame() {
+        bank = new Player();
         setSpaces();
         String choice = input("Please enter the number of players\n"
                 + "from 2 - 8:");
@@ -73,12 +83,9 @@ public class Monopoly {
             for (int i = 0; i < playerNumber; i++) {
                 String name = input("Please enter a name:");
                 players[i] = new Player(name);
-                
             }
-          Board board = new Board();
-          
         }
-
+        Board board = new Board();
     }
 
     private static void close() {
@@ -91,7 +98,15 @@ public class Monopoly {
     }
 
     private static void showRules() {
-        
+            try {
+            Desktop.getDesktop().browse(new URL("http://www.fgbradleys.com/rules/Monopoly%20Millennium%20Edition.pdf").toURI());
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(TEST.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(TEST.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TEST.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -168,19 +183,57 @@ public class Monopoly {
     }
 
     private static void playGame() {
-        for (int i = 0; i < players.length; i++) {
-            players[i].takeTurn();
-            System.out.println(i);
-            if (i == players.length - 1) {
-                i = -1;
+        for (turn = 0; turn < players.length; turn++) {
+            players[turn].takeTurn();
+            System.out.println(turn);
+            if (turn == players.length - 1) {
+                turn = -1;
             }
+            System.out.println("turn end");
         }
     }
 
     private static void setSpaces() {
         spaces = new Space[40];
-        spaces[0] = new Space(-200);
+        spaces[0] = new Space(-200, "GO");
         spaces[1] = new Space(60, 2, "Brown", "Mediterranean");
-        spaces[2] = new Space(1);
+        spaces[2] = new Space("chest");
+        spaces[3] = new Space(60, 4, "Brown", "Baltic");
+        spaces[4] = new Space(200, "Income Tax");
+        spaces[5] = new Space(true, 200, "Reading Railroad");
+        spaces[6] = new Space(100, 6, "LBlue", "Oriental");
+        spaces[7] = new Space("chance");
+        spaces[8] = new Space(100, 6, "LBlue", "Vermont");
+        spaces[9] = new Space(120, 8, "LBlue", "Connecticut");
+        spaces[10] = new Space(0, "Jail");
+        spaces[11] = new Space(140, 10, "Pink", "St. Charles");
+        spaces[12] = new Space("Electric Company", 150);
+        spaces[13] = new Space(140, 10, "Pink", "States");
+        spaces[14] = new Space(160, 12, "Pink", "Virginia");
+        spaces[15] = new Space(true, 200, "Pennsylvania Railroad");
+        spaces[16] = new Space(180, 14, "Orange", "St. James");
+        spaces[17] = new Space("chest");
+        spaces[18] = new Space(180, 14, "Orange", "Tennessee");
+        spaces[19] = new Space(200, 16, "Orange", "New York");
+        spaces[20] = new Space(0, "Free Parking");
+        spaces[21] = new Space(220, 18, "Red", "Kentucky");
+        spaces[22] = new Space("chance");
+        spaces[23] = new Space(220, 18, "Red", "Indiana");
+        spaces[24] = new Space(240, 20, "Red", "Illinois");
+        spaces[25] = new Space(true, 200, "B.& O. Railroad");
+        spaces[26] = new Space(260, 22, "Yellow", "Atlantic");
+        spaces[27] = new Space(260, 22, "Yellow", "Ventnor");
+        spaces[28] = new Space("Water Works", 150);
+        spaces[29] = new Space(280, 22, "Yellow", "Marvin Gardens");
+        spaces[30] = new Space(true, "Go to Jail");
+        spaces[31] = new Space(300, 26, "Green", "Pacific");
+        spaces[32] = new Space(300, 26, "Green", "North Carolina");
+        spaces[33] = new Space("chest");
+        spaces[34] = new Space(320, 28, "Green", "Pennsylvania");
+        spaces[35] = new Space(true, 200, "Short Line");
+        spaces[36] = new Space("chance");
+        spaces[37] = new Space(350, 35, "Blue", "Park Place");
+        spaces[38] = new Space(100, "Luxury Tax");
+        spaces[39] = new Space(400, 50, "Blue", "Boardwalk");
     }
 }
