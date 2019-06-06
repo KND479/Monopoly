@@ -40,12 +40,12 @@ public class Board extends javax.swing.JFrame {
         lblDisplay = new javax.swing.JLabel();
         lblDisplay2 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
-        btnRoll = new javax.swing.JButton();
         btnHouse = new javax.swing.JButton();
         btnMoney = new javax.swing.JButton();
         btnSell = new javax.swing.JButton();
         lblNumber = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnEnd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -82,15 +82,6 @@ public class Board extends javax.swing.JFrame {
         getContentPane().add(btnExit);
         btnExit.setBounds(1040, 970, 80, 30);
 
-        btnRoll.setText("Roll");
-        btnRoll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRollActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRoll);
-        btnRoll.setBounds(1030, 840, 80, 23);
-
         btnHouse.setText("Buy houses/ Sell house");
         getContentPane().add(btnHouse);
         btnHouse.setBounds(1040, 870, 190, 30);
@@ -112,6 +103,10 @@ public class Board extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(1040, 30, 730, 760);
 
+        btnEnd.setText("End Turn");
+        getContentPane().add(btnEnd);
+        btnEnd.setBounds(1040, 840, 90, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,22 +117,12 @@ public class Board extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnRollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollActionPerformed
-
-        players[turn].takeTurn();
-        String text = Integer.toString(turn);
-        lblNumber.setText(text);
-        
-       
-
-    }//GEN-LAST:event_btnRollActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnd;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHouse;
     private javax.swing.JButton btnMoney;
-    private javax.swing.JButton btnRoll;
     private javax.swing.JButton btnSell;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel lblDisplay;

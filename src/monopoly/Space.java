@@ -47,7 +47,9 @@ public class Space {
         rent = -50;
     }
 
+    // Creates railroads
     public Space(boolean isRailroad, int price, String name) {
+        this.isProperty = true;
         this.name = name;
         this.price = price;
         this.isRailroad = true;
