@@ -54,7 +54,6 @@ public class Player {
                 System.out.println("is double " + isDouble);
                 if (doubles == 2) {
                     goToJail();
-
                 }
             }
         } else {
@@ -147,13 +146,13 @@ public class Player {
                         System.out.println("Error, railroads not between"
                                 + " 1 and 4");
                     }
-                    System.out.println(this.name + " payed "
+                    output(this.name + " payed "
                             + spaces[space].owner.name + " $"
                             + rent);
                 } else {
                     this.cash -= spaces[space].rent;
                     (spaces[space].owner).cash += spaces[space].rent;
-                    System.out.println(this.name + " payed "
+                    output(this.name + " payed "
                             + spaces[space].owner.name + " $"
                             + spaces[space].rent);
                 }
@@ -207,7 +206,7 @@ public class Player {
                 railroads++;
             }
         } else {
-            System.out.println("Too Poor!");
+            output("Too Poor!");
         }
     }
 }

@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 public class Monopoly {
 
     final static String TITLE = "Monopoly";
-    final static String IMAGE_FILE = "C:\\Users\\r.pablo\\Desktop\\Monopoly.png";
+    final static String IMAGE_FILE = "C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\monopoly.png";
     static Player[] players;
     static Space[] spaces;
     static int turn = 0;
@@ -58,8 +58,7 @@ public class Monopoly {
 
     private static void checkChoice(int choice) {
         if (choice == 0) {
-            setupGame();
-            playGame();
+            startGame();
         } else if (choice == 1) {
             showRules();
         } else {
@@ -67,17 +66,16 @@ public class Monopoly {
         }
     }
 
-    private static void setupGame() {
+    private static void startGame() {
         bank = new Player();
         setSpaces();
         String choice = input("Please enter the number of players\n"
                 + "from 2 - 8:");
         int playerNumber = convert(choice);
-        if(playerNumber > 8 || playerNumber < 2) {
+        if (playerNumber > 8 || playerNumber < 2) {
             error();
-            setupGame();
-        }
-        else {
+            startGame();
+        } else {
             // make an array 
             players = new Player[playerNumber];
             // loops it for how many player
@@ -108,6 +106,8 @@ public class Monopoly {
         } catch (IOException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
+        int choice = intro();
+        checkChoice(choice);
     }
 
     /**
@@ -182,16 +182,7 @@ public class Monopoly {
         output("Please enter a valid command");
     }
 
-    private static void playGame() {
-//        for (turn = 0; turn < players.length; turn++) {
-//            players[turn].takeTurn();
-//            System.out.println(turn);
-//            if (turn == players.length - 1) {
-//                turn = -1;
-//            }
-//            System.out.println("turn end");
-//        }
-    }
+   
 
     private static void setSpaces() {
         spaces = new Space[40];

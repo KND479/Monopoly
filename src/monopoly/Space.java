@@ -1,5 +1,7 @@
 package monopoly;
 
+import static monopoly.Monopoly.board;
+
 import static monopoly.Monopoly.bank;
 import static monopoly.Monopoly.players;
 import static monopoly.Monopoly.turn;
