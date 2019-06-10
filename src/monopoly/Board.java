@@ -200,6 +200,9 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel lblTurn;
     // End of variables declaration//GEN-END:variables
 
+   /**
+    *  it updates the money
+    */
     private void updateLabels() {
         // shows how munch money the player has
         lblMessage.setText("$" + Integer.toString(players[turn].cash));
