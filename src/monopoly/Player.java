@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
  * @since 23-May-2019
  */
 public class Player {
+    // properties
 
     private int turns;
     public int cash;
@@ -25,13 +26,18 @@ public class Player {
     public int railroads = 0;
 
     /**
-     *
+     * set up how munch money in the bank
      */
     public Player() {
         cash = 1000000;
         name = "Bank";
     }
 
+    /**
+     * set the player name, space and cash it also set that there not in jail
+     *
+     * @param name of the player
+     */
     public Player(String name) {
         jailed = false;
         this.name = name;
@@ -40,7 +46,7 @@ public class Player {
     }
 
     /**
-     * To create dices
+     * rolls the dices
      */
     public void takeTurn() {
         System.out.println("turn start " + name + "\n$" + cash);
@@ -87,6 +93,11 @@ public class Player {
 
     }
 
+    /**
+     * creates a dice
+     *
+     * @return give the dice number
+     */
     private boolean roll() {
         int dice1 = random(1, 6);
         int dice2 = random(1, 6);
@@ -103,6 +114,7 @@ public class Player {
         return false;
     }
 
+    // move the player and if they pass go gain $200
     private void move(int move) {
         for (int i = 0; i < move; i++) {
             space++;
@@ -115,15 +127,21 @@ public class Player {
         System.out.println("space = " + space);
     }
 
+    /**
+     * check the player where they landed
+     */
     public void checkSpace() {
         String message = name + " landed on " + spaces[space].name;
         output(message);
-        if (space == 30) {
+        if (space == 30) { // if they landed on the go to jail square they
+            // have to go to jail
             goToJail();
         } else if (spaces[space].isProperty == true) {
             if (spaces[space].owned == false) {
+                // when the property is not owned you have a chance to buy it
                 propose();
             } else if (spaces[space].owned == true) {
+                // when the property owned you have to pay rent
                 if (spaces[space].isRailroad == true) {
                     int rent = 25;
                     if (spaces[space].owner.railroads == 1) {
@@ -162,6 +180,9 @@ public class Player {
         }
     }
 
+    /**
+     * went to jail
+     */
     public void goToJail() {
         output("Go to jail!");
         jailed = true;
@@ -180,6 +201,9 @@ public class Player {
 
     }
 
+    /**
+     * ask the buyer if he wants it
+     */
     private void propose() {
         String name = spaces[space].name;
         int price = spaces[space].price;

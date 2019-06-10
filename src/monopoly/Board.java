@@ -24,8 +24,10 @@ public class Board extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setSize(1745, 2000);// change the size
-        btnHouse.setEnabled(false);
-        btnSell.setEnabled(false);
+        btnHouse.setEnabled(false); // set the button to be disenable so it
+        // can't be used at the start
+        btnSell.setEnabled(false); // set the button to be disenable so it
+        // can't be used at the start
 
     }
 
@@ -38,17 +40,24 @@ public class Board extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblPicture = new javax.swing.JLabel();
         lblTurn = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         btnHouse = new javax.swing.JButton();
         btnSell = new javax.swing.JButton();
         lblNumber = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblDeeds = new javax.swing.JLabel();
         btnEnd = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
+        lblP1 = new javax.swing.JLabel();
+        lblP2 = new javax.swing.JLabel();
+        lblP3 = new javax.swing.JLabel();
+        lblP4 = new javax.swing.JLabel();
+        lblP5 = new javax.swing.JLabel();
+        lblP6 = new javax.swing.JLabel();
+        lblP7 = new javax.swing.JLabel();
+        lblP8 = new javax.swing.JLabel();
+        lblPicture = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -57,12 +66,6 @@ public class Board extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(null);
-
-        lblPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/s-l300.jpg"))); // NOI18N
-        lblPicture.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(lblPicture);
-        lblPicture.setBounds(0, 0, 1024, 1020);
 
         lblTurn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(lblTurn);
@@ -89,10 +92,10 @@ public class Board extends javax.swing.JFrame {
         getContentPane().add(lblNumber);
         lblNumber.setBounds(1090, 10, 30, 20);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/deeds.jpg"))); // NOI18N
-        jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(1020, 50, 730, 760);
+        lblDeeds.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/deeds.jpg"))); // NOI18N
+        lblDeeds.setText("jLabel10");
+        getContentPane().add(lblDeeds);
+        lblDeeds.setBounds(1020, 50, 730, 760);
 
         btnEnd.setText("Start");
         btnEnd.addActionListener(new java.awt.event.ActionListener() {
@@ -105,14 +108,48 @@ public class Board extends javax.swing.JFrame {
         getContentPane().add(lblMessage);
         lblMessage.setBounds(1410, 20, 100, 14);
 
+        lblP1.setText("jLabel1");
+        getContentPane().add(lblP1);
+        lblP1.setBounds(930, 890, 34, 20);
+
+        lblP2.setText("jLabel3");
+        getContentPane().add(lblP2);
+        lblP2.setBounds(930, 910, 34, 14);
+
+        lblP3.setText("jLabel2");
+        getContentPane().add(lblP3);
+        lblP3.setBounds(930, 930, 34, 14);
+
+        lblP4.setText("jLabel3");
+        getContentPane().add(lblP4);
+        lblP4.setBounds(930, 950, 34, 14);
+
+        lblP5.setText("jLabel3");
+        getContentPane().add(lblP5);
+        lblP5.setBounds(990, 890, 34, 14);
+
+        lblP6.setText("jLabel3");
+        getContentPane().add(lblP6);
+        lblP6.setBounds(990, 910, 34, 14);
+
+        lblP7.setText("jLabel3");
+        getContentPane().add(lblP7);
+        lblP7.setBounds(990, 930, 34, 20);
+
+        lblP8.setText("jLabel3");
+        getContentPane().add(lblP8);
+        lblP8.setBounds(990, 950, 34, 14);
+
+        lblPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/s-l300.jpg"))); // NOI18N
+        lblPicture.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblPicture);
+        lblPicture.setBounds(0, 0, 1024, 1020);
+
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/Money1.png"))); // NOI18N
         lblBackground.setText("sa");
         getContentPane().add(lblBackground);
         lblBackground.setBounds(-30, 0, 1790, 1060);
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(1230, 900, 34, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,10 +162,12 @@ public class Board extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
-         btnEnd.setText("End turn");
-          btnHouse.setEnabled(true);
-        btnSell.setEnabled(true);
-        turn++;
+        btnEnd.setText("End turn"); // set the text
+        btnHouse.setEnabled(true); // set the button to be enable so it
+        // can be used 
+        btnSell.setEnabled(true); // set the button to be  enable so it
+        // can be used
+        turn++; // add the turn count
         updateLabels();
         players[turn].takeTurn();
         updateLabels();
@@ -145,17 +184,26 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHouse;
     private javax.swing.JButton btnSell;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblDeeds;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel lblNumber;
+    private javax.swing.JLabel lblP1;
+    private javax.swing.JLabel lblP2;
+    private javax.swing.JLabel lblP3;
+    private javax.swing.JLabel lblP4;
+    private javax.swing.JLabel lblP5;
+    private javax.swing.JLabel lblP6;
+    private javax.swing.JLabel lblP7;
+    private javax.swing.JLabel lblP8;
     private javax.swing.JLabel lblPicture;
     private javax.swing.JLabel lblTurn;
     // End of variables declaration//GEN-END:variables
 
     private void updateLabels() {
+        // shows how munch money the player has
         lblMessage.setText("$" + Integer.toString(players[turn].cash));
+        // shows the name of the player and who turn it is
         lblTurn.setText(players[turn].name + "'s turn");
     }
 }

@@ -11,6 +11,7 @@ import static monopoly.Monopoly.turn;
  * @author Will Gore & Raden Pablo
  */
 public class Space {
+    // properties
 
     public String name;
     public boolean isProperty;
@@ -21,7 +22,12 @@ public class Space {
     private String colour;
     public Player owner;
 
-    // creates non-buyable properties like GO
+    /**
+     * creates non-buyable properties like GO
+     *
+     * @param rent how much money needed to pay
+     * @param name the name of the properties
+     */
     public Space(int rent, String name) {
         owner = bank;
         this.name = name;
@@ -30,7 +36,14 @@ public class Space {
         isRailroad = false;
     }
 
-    // creates buyable properties
+    /**
+     * creates buyable properties
+     *
+     * @param price of the properties
+     * @param rent of the properties
+     * @param colour of the properties
+     * @param name of the properties
+     */
     public Space(int price, int rent, String colour, String name) {
         owner = bank;
         this.price = price;
@@ -42,6 +55,11 @@ public class Space {
         owned = false;
     }
 
+    /**
+     * pays the rent
+     *
+     * @param name the properties name
+     */
     public Space(String name) {
         owned = true;
         owner = bank;
@@ -49,7 +67,13 @@ public class Space {
         rent = -50;
     }
 
-    // Creates railroads
+    /**
+     * Creates railroads
+     *
+     * @param isRailroad if they landed on the railroad
+     * @param price of the railroad
+     * @param name of the railroad
+     */
     public Space(boolean isRailroad, int price, String name) {
         this.isProperty = true;
         this.name = name;
@@ -57,15 +81,29 @@ public class Space {
         this.isRailroad = true;
     }
 
+    /**
+     *
+     * @param name of the property
+     * @param price of the property
+     */
     public Space(String name, int price) {
         isProperty = true;
         this.name = name;
         this.price = price;
     }
 
+    /**
+     *
+     * @param jailed if they are in jailed
+     * @param name of the person
+     */
     public Space(boolean jailed, String name) {
         this.name = name;
     }
+
+    /**
+     * when you accepted to buy
+     */
 
     public void buy() {
         owned = true;

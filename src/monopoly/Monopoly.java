@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
  */
 public class Monopoly {
 
+    // Global Variable
     final static String TITLE = "Monopoly";
     final static String IMAGE_FILE = "C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\monopoly.png";
     static Player[] players;
@@ -27,9 +28,6 @@ public class Monopoly {
     static Board board;
     static Player bank;
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         int choice = intro();
         checkChoice(choice);
@@ -56,6 +54,11 @@ public class Monopoly {
         return choice;
     }
 
+    /**
+     * check which button was clicked
+     *
+     * @param choice whatever the user choice
+     */
     private static void checkChoice(int choice) {
         if (choice == 0) {
             startGame();
@@ -66,6 +69,9 @@ public class Monopoly {
         }
     }
 
+    /**
+     * set up the game
+     */
     private static void startGame() {
         bank = new Player();
         setSpaces();
@@ -87,6 +93,9 @@ public class Monopoly {
         Board board = new Board();
     }
 
+    /**
+     * exit the game
+     */
     private static void close() {
         output("Thank you for using our program!");
         System.exit(0);
@@ -96,7 +105,11 @@ public class Monopoly {
         JOptionPane.showMessageDialog(null, text);
     }
 
+    /**
+     * shows the rules of monopoly
+     */
     private static void showRules() {
+        // makes the link a hyperlink
         try {
             Desktop.getDesktop().browse(new URL("http://www.fgbradleys.com/rules/Monopoly%20Millennium%20Edition.pdf").toURI());
         } catch (MalformedURLException ex) {
@@ -113,8 +126,8 @@ public class Monopoly {
     /**
      * Converts a String to an integer and calls isNumber
      *
-     * @param input
-     * @return
+     * @param input whatever the user choice
+     * @return see if the choice was a number or not
      */
     private static int convert(String input) {
         //checks if the string is even an integer to begin with
@@ -178,11 +191,13 @@ public class Monopoly {
         return choice;
     }
 
+    /**
+     * says there is an error
+     */
     private static void error() {
         output("Please enter a valid command");
     }
-
-   
+    // set the spaces and the name for each board
 
     private static void setSpaces() {
         spaces = new Space[40];
