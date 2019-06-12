@@ -21,6 +21,7 @@ public class Space {
     public boolean isRailroad;
     private String colour;
     public Player owner;
+    public boolean isUtility;
 
     /**
      * creates non-buyable properties like GO
@@ -75,6 +76,7 @@ public class Space {
      * @param name of the railroad
      */
     public Space(boolean isRailroad, int price, String name) {
+//        owned = false;
         this.isProperty = true;
         this.name = name;
         this.price = price;
@@ -82,11 +84,13 @@ public class Space {
     }
 
     /**
+     * Creates utilities
      *
      * @param name of the property
      * @param price of the property
      */
     public Space(String name, int price) {
+        isUtility = true;
         isProperty = true;
         this.name = name;
         this.price = price;
@@ -104,7 +108,6 @@ public class Space {
     /**
      * when you accepted to buy
      */
-
     public void buy() {
         owned = true;
         owner = players[turn];

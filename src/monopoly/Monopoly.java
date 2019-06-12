@@ -91,6 +91,8 @@ public class Monopoly {
             }
         }
         Board board = new Board();
+        
+        
     }
 
     /**
@@ -122,7 +124,7 @@ public class Monopoly {
         int choice = intro();
         checkChoice(choice);
     }
-
+   
     /**
      * Converts a String to an integer and calls isNumber
      *

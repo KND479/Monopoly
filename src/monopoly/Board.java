@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package monopoly;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import static monopoly.Monopoly.players;
 import static monopoly.Monopoly.turn;
-
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
- *
  * @author r.pablo
  */
 public class Board extends javax.swing.JFrame {
+    // array
+    public static JLabel[] dice;
+    
+    private Timer musicCheck; 
 
     /**
      * Creates new form Board
@@ -28,7 +28,26 @@ public class Board extends javax.swing.JFrame {
         // can't be used at the start
         btnSell.setEnabled(false); // set the button to be disenable so it
         // can't be used at the start
-
+        JLabel[] dice = {
+            lblDice1, lblDice2, lblDice3, lblDice4,  lblDice5,  lblDice6, 
+            lblDice7, lblDice8, lblDice9, lblDice10, lblDice11, lblDice12 
+        }; 
+        this.dice = dice; 
+        // set the every lbl dice invisible 
+        for (JLabel die : dice) {
+            die.setVisible(false);
+        }
+        MediaPlayer media = new MediaPlayer();
+        media.playWAV("Monopoly Deluxe - Music 1.wav");
+        musicCheck = new Timer(1, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (media.isRunning() == false) {
+                    media.playWAV("Monopoly Deluxe - Music 1.wav"); 
+                }
+            }
+        }); 
+        musicCheck.start();
     }
 
     /**
@@ -56,6 +75,18 @@ public class Board extends javax.swing.JFrame {
         lblP6 = new javax.swing.JLabel();
         lblP7 = new javax.swing.JLabel();
         lblP8 = new javax.swing.JLabel();
+        lblDice1 = new javax.swing.JLabel();
+        lblDice2 = new javax.swing.JLabel();
+        lblDice3 = new javax.swing.JLabel();
+        lblDice4 = new javax.swing.JLabel();
+        lblDice5 = new javax.swing.JLabel();
+        lblDice6 = new javax.swing.JLabel();
+        lblDice7 = new javax.swing.JLabel();
+        lblDice8 = new javax.swing.JLabel();
+        lblDice9 = new javax.swing.JLabel();
+        lblDice10 = new javax.swing.JLabel();
+        lblDice11 = new javax.swing.JLabel();
+        lblDice12 = new javax.swing.JLabel();
         lblPicture = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
@@ -110,7 +141,7 @@ public class Board extends javax.swing.JFrame {
 
         lblP1.setText("jLabel1");
         getContentPane().add(lblP1);
-        lblP1.setBounds(930, 890, 34, 20);
+        lblP1.setBounds(930, 980, 34, 20);
 
         lblP2.setText("jLabel3");
         getContentPane().add(lblP2);
@@ -126,25 +157,80 @@ public class Board extends javax.swing.JFrame {
 
         lblP5.setText("jLabel3");
         getContentPane().add(lblP5);
-        lblP5.setBounds(990, 890, 34, 14);
+        lblP5.setBounds(970, 910, 34, 14);
 
         lblP6.setText("jLabel3");
         getContentPane().add(lblP6);
-        lblP6.setBounds(990, 910, 34, 14);
+        lblP6.setBounds(990, 920, 34, 14);
 
         lblP7.setText("jLabel3");
         getContentPane().add(lblP7);
-        lblP7.setBounds(990, 930, 34, 20);
+        lblP7.setBounds(980, 950, 34, 20);
 
         lblP8.setText("jLabel3");
         getContentPane().add(lblP8);
-        lblP8.setBounds(990, 950, 34, 14);
+        lblP8.setBounds(980, 980, 34, 14);
+
+        lblDice1.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice1.png")); // NOI18N
+        getContentPane().add(lblDice1);
+        lblDice1.setBounds(120, 140, 110, 130);
+
+        lblDice2.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice2.png")); // NOI18N
+        lblDice2.setText("jLabel1");
+        getContentPane().add(lblDice2);
+        lblDice2.setBounds(130, 230, 120, 160);
+
+        lblDice3.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice3.png")); // NOI18N
+        lblDice3.setText("jLabel1");
+        getContentPane().add(lblDice3);
+        lblDice3.setBounds(130, 340, 120, 150);
+
+        lblDice4.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice4.png")); // NOI18N
+        lblDice4.setText("jLabel1");
+        getContentPane().add(lblDice4);
+        lblDice4.setBounds(120, 450, 120, 130);
+
+        lblDice5.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice5.png")); // NOI18N
+        lblDice5.setText("jLabel1");
+        getContentPane().add(lblDice5);
+        lblDice5.setBounds(120, 520, 120, 180);
+
+        lblDice6.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice6.png")); // NOI18N
+        getContentPane().add(lblDice6);
+        lblDice6.setBounds(320, 450, 130, 140);
+
+        lblDice7.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice1.png")); // NOI18N
+        getContentPane().add(lblDice7);
+        lblDice7.setBounds(230, 150, 110, 130);
+
+        lblDice8.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice2.png")); // NOI18N
+        getContentPane().add(lblDice8);
+        lblDice8.setBounds(250, 250, 110, 140);
+
+        lblDice9.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice3.png")); // NOI18N
+        lblDice9.setText("jLabel1");
+        getContentPane().add(lblDice9);
+        lblDice9.setBounds(260, 360, 120, 150);
+
+        lblDice10.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice4.png")); // NOI18N
+        lblDice10.setText("jLabel1");
+        getContentPane().add(lblDice10);
+        lblDice10.setBounds(270, 440, 120, 130);
+
+        lblDice11.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice5.png")); // NOI18N
+        lblDice11.setText("jLabel1");
+        getContentPane().add(lblDice11);
+        lblDice11.setBounds(280, 500, 120, 180);
+
+        lblDice12.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice6.png")); // NOI18N
+        getContentPane().add(lblDice12);
+        lblDice12.setBounds(580, 460, 120, 120);
 
         lblPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/s-l300.jpg"))); // NOI18N
         lblPicture.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(lblPicture);
-        lblPicture.setBounds(0, 0, 1024, 1020);
+        lblPicture.setBounds(0, 10, 1024, 1020);
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/Money1.png"))); // NOI18N
         lblBackground.setText("sa");
@@ -161,7 +247,11 @@ public class Board extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExitActionPerformed
 
+
     private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
+        for (JLabel die : dice) {
+            die.setVisible(false);
+        }
         btnEnd.setText("End turn"); // set the text
         btnHouse.setEnabled(true); // set the button to be enable so it
         // can be used 
@@ -176,6 +266,7 @@ public class Board extends javax.swing.JFrame {
             turn = -1;
         }
         System.out.println("turn end");
+        
     }//GEN-LAST:event_btnEndActionPerformed
 
 
@@ -186,6 +277,18 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JButton btnSell;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDeeds;
+    private javax.swing.JLabel lblDice1;
+    private javax.swing.JLabel lblDice10;
+    private javax.swing.JLabel lblDice11;
+    private javax.swing.JLabel lblDice12;
+    private javax.swing.JLabel lblDice2;
+    private javax.swing.JLabel lblDice3;
+    private javax.swing.JLabel lblDice4;
+    private javax.swing.JLabel lblDice5;
+    private javax.swing.JLabel lblDice6;
+    private javax.swing.JLabel lblDice7;
+    private javax.swing.JLabel lblDice8;
+    private javax.swing.JLabel lblDice9;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel lblNumber;
     private javax.swing.JLabel lblP1;
@@ -200,13 +303,16 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel lblTurn;
     // End of variables declaration//GEN-END:variables
 
-   /**
-    *  it updates the money
-    */
+    /**
+     * it updates the money
+     */
     private void updateLabels() {
+
         // shows how munch money the player has
         lblMessage.setText("$" + Integer.toString(players[turn].cash));
         // shows the name of the player and who turn it is
         lblTurn.setText(players[turn].name + "'s turn");
+
     }
+    
 }
