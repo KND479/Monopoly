@@ -22,6 +22,7 @@ public class Space {
     private String colour;
     public Player owner;
     public boolean isUtility;
+    public boolean isCC;
 
     /**
      * creates non-buyable properties like GO
@@ -62,10 +63,10 @@ public class Space {
      * @param name the properties name
      */
     public Space(String name) {
+        isCC = true;
         owned = true;
         owner = bank;
         this.name = name;
-        rent = -50;
     }
 
     /**

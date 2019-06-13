@@ -7,6 +7,8 @@ import static monopoly.Monopoly.TITLE;
 import static monopoly.Monopoly.IMAGE_FILE;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import static monopoly.Monopoly.players;
 
 /**
  * Players.java - to create players
@@ -25,6 +27,7 @@ public class Player {
     private boolean jailed;
     public int railroads = 0;
     public int util = 0;
+    public JLabel label;
 
     public static int amountToMove;
     public static int roll1;
@@ -146,6 +149,8 @@ public class Player {
         if (space == 30) { // if they landed on the go to jail square they
             // have to go to jail
             goToJail();
+        } else if (spaces[space].isCC == true) {
+            CC chance = new CC(this, random(1, 8));
         } else if (spaces[space].isProperty == true) {
             if (spaces[space].owned == false) {
                 // when the property is not owned you have a chance to buy it
@@ -221,7 +226,7 @@ public class Player {
      *
      * @param text is whatever the text is
      */
-    private void output(String text) {
+    public void output(String text) {
         Icon picture = new ImageIcon(IMAGE_FILE);
         JOptionPane.showMessageDialog(
                 null,
