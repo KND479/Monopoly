@@ -28,10 +28,12 @@ public class Player {
     public int railroads = 0;
     public int util = 0;
     public JLabel label;
+    public int YMod;
 
     public static int amountToMove;
     public static int roll1;
     public static int roll2;
+ 
 
     /**
      * set up how munch money in the bank
@@ -110,10 +112,9 @@ public class Player {
      *
      * @return give the dice number
      */
-    private boolean roll() {
+    public boolean roll() {
         roll1 = random(1, 6);
         roll2 = random(1, 6);
-        showDice(Player.roll1, Player.roll2);
         amountToMove = roll1 + roll2;
         System.out.println("Space " + space);
         System.out.println("dice1 " + roll1 + "\ndice2 " + roll2);
@@ -131,9 +132,11 @@ public class Player {
     private void move(int move) {
         for (int i = 0; i < move; i++) {
             space++;
+            
             if (space == 40) {
                 space = 0;
                 cash += 200;
+                
             }
         }
 
@@ -144,6 +147,7 @@ public class Player {
      * check the player where they landed
      */
     public void checkSpace() {
+        label.setLocation(spaces[space].x, spaces[space].y + YMod);
         String message = name + " landed on " + spaces[space].name;
         output(message);
         if (space == 30) { // if they landed on the go to jail square they
@@ -274,17 +278,9 @@ public class Player {
             if (spaces[space].isUtility == true) {
                 util++;
             }
-        } else {
+        } else if (choice == 0 && cash <= spaces[space].price) {
             output("Too Poor!");
         }
 
     }
-
-    private void showDice(int roll1, int roll2) {
-        Board.dice[roll1 - 1].setLocation(320, 450);
-        Board.dice[roll2 - 1].setLocation(580, 450);
-        Board.dice[roll1 - 1].setVisible(true);
-        Board.dice[roll2 - 1].setVisible(true);
-    }
-
 }

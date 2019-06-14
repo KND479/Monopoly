@@ -48,7 +48,7 @@ public class CC {
             player.checkSpace();
             System.out.println(player.space);
         } else if (num == 7) {
-            player.output("You are caught cheating" + "\n pay each player  50");
+            player.output("You are caught cheating" + "\n pay each player 50");
             for (int i = 0; i < players.length; i++) {
                 players[i].cash += 50;
                 player.cash -= 50;

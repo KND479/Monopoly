@@ -23,6 +23,8 @@ public class Space {
     public Player owner;
     public boolean isUtility;
     public boolean isCC;
+    public int x;
+    public int y;
 
     /**
      * creates non-buyable properties like GO
@@ -30,7 +32,9 @@ public class Space {
      * @param rent how much money needed to pay
      * @param name the name of the properties
      */
-    public Space(int rent, String name) {
+    public Space(int rent, String name, int x, int y) {
+        this.x = x;
+        this.y = y;
         owner = bank;
         this.name = name;
         isProperty = false;
@@ -46,7 +50,9 @@ public class Space {
      * @param colour of the properties
      * @param name of the properties
      */
-    public Space(int price, int rent, String colour, String name) {
+    public Space(int price, int rent, String colour, String name, int x, int y) {
+        this.x = x;
+        this.y = y;
         owner = bank;
         this.price = price;
         this.rent = rent;
@@ -62,7 +68,9 @@ public class Space {
      *
      * @param name the properties name
      */
-    public Space(String name) {
+    public Space(String name, int x, int y) {
+        this.x = x;
+        this.y = y;
         isCC = true;
         owned = true;
         owner = bank;
@@ -76,7 +84,9 @@ public class Space {
      * @param price of the railroad
      * @param name of the railroad
      */
-    public Space(boolean isRailroad, int price, String name) {
+    public Space(boolean isRailroad, int price, String name, int x, int y) {
+        this.x = x;
+        this.y = y;
 //        owned = false;
         this.isProperty = true;
         this.name = name;
@@ -90,7 +100,9 @@ public class Space {
      * @param name of the property
      * @param price of the property
      */
-    public Space(String name, int price) {
+    public Space(String name, int price, int x, int y) {
+        this.x = x;
+        this.y = y;
         isUtility = true;
         isProperty = true;
         this.name = name;
@@ -102,7 +114,7 @@ public class Space {
      * @param jailed if they are in jailed
      * @param name of the person
      */
-    public Space(boolean jailed, String name) {
+    public Space(boolean jailed, String name, int x, int y) {
         this.name = name;
     }
 

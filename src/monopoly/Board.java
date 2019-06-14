@@ -2,6 +2,7 @@ package monopoly;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import static monopoly.Monopoly.players;
 import static monopoly.Monopoly.turn;
@@ -10,13 +11,12 @@ import javax.swing.Timer;
 import static monopoly.Player.roll1;
 import static monopoly.Player.roll2;
 
+
 /**
  * @author r.pablo
  */
 public class Board extends javax.swing.JFrame {
 
-    // array
-    public static JLabel[] dice;
     public JLabel[] labels = new JLabel[8];
 
     private Timer musicCheck;
@@ -32,17 +32,7 @@ public class Board extends javax.swing.JFrame {
         // can't be used at the start
         btnSell.setEnabled(false); // set the button to be disenable so it
         // can't be used at the start
-        JLabel[] dice = {
-            lblDice1,lblDice2, lblDice3, lblDice4,lblDice5,  
-            lblDice6, lblDice7, lblDice8, lblDice9, lblDice10, lblDice11
-            ,lblDice12
 
-        };
-        this.dice = dice;
-        // set the every lbl dice invisible 
-        for (JLabel die : dice) {
-            die.setVisible(false);
-        }
         MediaPlayer media = new MediaPlayer();
         media.playWAV("Monopoly Deluxe - Music 1.wav");
         musicCheck = new Timer(1, new ActionListener() {
@@ -54,17 +44,17 @@ public class Board extends javax.swing.JFrame {
             }
         });
         musicCheck.start();
-//        labels[0] = lblP1;
-//        labels[1] = lblP2;
-//        labels[2] = lblP3;
-//        labels[3] = lblP4;
-//        labels[4] = lblP5;
-//        labels[5] = lblP6;
-//        labels[6] = lblP7;
-//        labels[7] = lblP8;
-//        for (int i = 0; i < labels.length; i++) {
-//            labels[i].setVisible(false);
-//        }
+        labels[0] = lblP1;
+        labels[1] = lblP2;
+        labels[2] = lblP3;
+        labels[3] = lblP4;
+        labels[4] = lblP5;
+        labels[5] = lblP6;
+        labels[6] = lblP7;
+        labels[7] = lblP8;
+        for (int i = 0; i < labels.length; i++) {
+            labels[i].setVisible(false);
+        }
     }
 
     /**
@@ -93,17 +83,7 @@ public class Board extends javax.swing.JFrame {
         lblP7 = new javax.swing.JLabel();
         lblP8 = new javax.swing.JLabel();
         lblDice1 = new javax.swing.JLabel();
-        lblDice2 = new javax.swing.JLabel();
-        lblDice3 = new javax.swing.JLabel();
-        lblDice4 = new javax.swing.JLabel();
-        lblDice5 = new javax.swing.JLabel();
         lblDice6 = new javax.swing.JLabel();
-        lblDice7 = new javax.swing.JLabel();
-        lblDice8 = new javax.swing.JLabel();
-        lblDice9 = new javax.swing.JLabel();
-        lblDice10 = new javax.swing.JLabel();
-        lblDice11 = new javax.swing.JLabel();
-        lblDice12 = new javax.swing.JLabel();
         lblPicture = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
@@ -119,6 +99,7 @@ public class Board extends javax.swing.JFrame {
         getContentPane().add(lblTurn);
         lblTurn.setBounds(1410, 0, 100, 20);
 
+        btnExit.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,15 +107,17 @@ public class Board extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnExit);
-        btnExit.setBounds(1030, 910, 80, 30);
+        btnExit.setBounds(1320, 900, 300, 90);
 
+        btnHouse.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnHouse.setText("House");
         getContentPane().add(btnHouse);
-        btnHouse.setBounds(1030, 840, 90, 30);
+        btnHouse.setBounds(1020, 900, 300, 90);
 
+        btnSell.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnSell.setText("Sell");
         getContentPane().add(btnSell);
-        btnSell.setBounds(1030, 880, 90, 23);
+        btnSell.setBounds(1320, 820, 300, 80);
 
         lblNumber.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(lblNumber);
@@ -145,6 +128,7 @@ public class Board extends javax.swing.JFrame {
         getContentPane().add(lblDeeds);
         lblDeeds.setBounds(1020, 50, 730, 760);
 
+        btnEnd.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnEnd.setText("Start");
         btnEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,96 +136,55 @@ public class Board extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEnd);
-        btnEnd.setBounds(1030, 810, 90, 23);
+        btnEnd.setBounds(1020, 820, 300, 80);
         getContentPane().add(lblMessage);
         lblMessage.setBounds(1410, 20, 100, 14);
 
+        lblP1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP1.setForeground(new java.awt.Color(0, 204, 204));
         lblP1.setText("jLabel1");
         getContentPane().add(lblP1);
-        lblP1.setBounds(930, 980, 34, 20);
+        lblP1.setBounds(640, 900, 90, 20);
 
-        lblP2.setText("jLabel3");
+        lblP2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP2.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(lblP2);
-        lblP2.setBounds(930, 910, 34, 14);
+        lblP2.setBounds(670, 690, 90, 14);
 
-        lblP3.setText("jLabel2");
+        lblP3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP3.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(lblP3);
-        lblP3.setBounds(930, 930, 34, 14);
+        lblP3.setBounds(670, 670, 90, 14);
 
-        lblP4.setText("jLabel3");
+        lblP4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP4.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(lblP4);
-        lblP4.setBounds(930, 950, 34, 14);
+        lblP4.setBounds(670, 710, 90, 14);
 
-        lblP5.setText("jLabel3");
+        lblP5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP5.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(lblP5);
-        lblP5.setBounds(970, 910, 34, 14);
+        lblP5.setBounds(670, 650, 90, 14);
 
+        lblP6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP6.setForeground(new java.awt.Color(0, 204, 204));
         lblP6.setText("jLabel3");
         getContentPane().add(lblP6);
-        lblP6.setBounds(990, 920, 34, 14);
+        lblP6.setBounds(920, 230, 90, 14);
 
-        lblP7.setText("jLabel3");
+        lblP7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP7.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(lblP7);
-        lblP7.setBounds(980, 950, 34, 20);
+        lblP7.setBounds(670, 730, 90, 20);
 
-        lblP8.setText("jLabel3");
+        lblP8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblP8.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(lblP8);
-        lblP8.setBounds(980, 980, 34, 14);
-
-        lblDice1.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice1.png")); // NOI18N
+        lblP8.setBounds(670, 630, 90, 14);
         getContentPane().add(lblDice1);
-        lblDice1.setBounds(350, 640, 110, 130);
-
-        lblDice2.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice2.png")); // NOI18N
-        lblDice2.setText("jLabel1");
-        getContentPane().add(lblDice2);
-        lblDice2.setBounds(350, 330, 120, 160);
-
-        lblDice3.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice3.png")); // NOI18N
-        lblDice3.setText("jLabel1");
-        getContentPane().add(lblDice3);
-        lblDice3.setBounds(260, 520, 120, 150);
-
-        lblDice4.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice4.png")); // NOI18N
-        lblDice4.setText("jLabel1");
-        getContentPane().add(lblDice4);
-        lblDice4.setBounds(210, 350, 120, 130);
-
-        lblDice5.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice5.png")); // NOI18N
-        lblDice5.setText("jLabel1");
-        getContentPane().add(lblDice5);
-        lblDice5.setBounds(180, 630, 120, 180);
-
-        lblDice6.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice6.png")); // NOI18N
+        lblDice1.setBounds(340, 480, 110, 130);
         getContentPane().add(lblDice6);
-        lblDice6.setBounds(500, 640, 130, 140);
-
-        lblDice7.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice1.png")); // NOI18N
-        getContentPane().add(lblDice7);
-        lblDice7.setBounds(670, 230, 110, 130);
-
-        lblDice8.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice2.png")); // NOI18N
-        getContentPane().add(lblDice8);
-        lblDice8.setBounds(680, 640, 110, 140);
-
-        lblDice9.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice3.png")); // NOI18N
-        lblDice9.setText("jLabel1");
-        getContentPane().add(lblDice9);
-        lblDice9.setBounds(400, 230, 120, 150);
-
-        lblDice10.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice4.png")); // NOI18N
-        lblDice10.setText("jLabel1");
-        getContentPane().add(lblDice10);
-        lblDice10.setBounds(430, 500, 120, 130);
-
-        lblDice11.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice5.png")); // NOI18N
-        lblDice11.setText("jLabel1");
-        getContentPane().add(lblDice11);
-        lblDice11.setBounds(510, 300, 120, 180);
-
-        lblDice12.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice6.png")); // NOI18N
-        getContentPane().add(lblDice12);
-        lblDice12.setBounds(610, 480, 120, 120);
+        lblDice6.setBounds(540, 480, 130, 140);
 
         lblPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/s-l300.jpg"))); // NOI18N
@@ -266,10 +209,9 @@ public class Board extends javax.swing.JFrame {
 
 
     private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
-        for (JLabel die : dice) {
-            die.setVisible(false);
-        }
 
+        lblDice1.setVisible(false);
+        lblDice6.setVisible(false);
         btnEnd.setText("End turn"); // set the text
         btnHouse.setEnabled(true); // set the button to be enable so it
         // can be used 
@@ -278,6 +220,10 @@ public class Board extends javax.swing.JFrame {
         turn++; // add the turn count
         updateLabels();
         players[turn].takeTurn();
+        lblDice1.setVisible(true);
+        lblDice6.setVisible(true);
+        lblDice1.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice" + roll1 + ".png"));
+        lblDice6.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice" + roll2 + ".png"));
         updateLabels();
         System.out.println(turn);
         if (turn == players.length - 1) {
@@ -288,7 +234,9 @@ public class Board extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEndActionPerformed
 
     public void startGame() {
-
+        for (int i = 0; i < players.length; i++) {
+            players[i].label.setLocation(960, (900 + players[i].YMod));
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -299,17 +247,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDeeds;
     private javax.swing.JLabel lblDice1;
-    private javax.swing.JLabel lblDice10;
-    private javax.swing.JLabel lblDice11;
-    private javax.swing.JLabel lblDice12;
-    private javax.swing.JLabel lblDice2;
-    private javax.swing.JLabel lblDice3;
-    private javax.swing.JLabel lblDice4;
-    private javax.swing.JLabel lblDice5;
     private javax.swing.JLabel lblDice6;
-    private javax.swing.JLabel lblDice7;
-    private javax.swing.JLabel lblDice8;
-    private javax.swing.JLabel lblDice9;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel lblNumber;
     private javax.swing.JLabel lblP1;
@@ -328,9 +266,7 @@ public class Board extends javax.swing.JFrame {
      * it updates the money
      */
     public void updateLabels() {
-        if (roll1 == roll2){
-            
-        }
+
         // shows how munch money the player has
         lblMessage.setText("$" + Integer.toString(players[turn].cash));
         // shows the name of the player and who turn it is
