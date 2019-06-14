@@ -25,6 +25,7 @@ public class Space {
     public boolean isCC;
     public int x;
     public int y;
+    public int mort;
 
     /**
      * creates non-buyable properties like GO
@@ -51,6 +52,7 @@ public class Space {
      * @param name of the properties
      */
     public Space(int price, int rent, String colour, String name, int x, int y) {
+        mort = price/2;
         this.x = x;
         this.y = y;
         owner = bank;
@@ -85,6 +87,7 @@ public class Space {
      * @param name of the railroad
      */
     public Space(boolean isRailroad, int price, String name, int x, int y) {
+        mort = price/2;
         this.x = x;
         this.y = y;
 //        owned = false;
@@ -101,6 +104,7 @@ public class Space {
      * @param price of the property
      */
     public Space(String name, int price, int x, int y) {
+        mort = price/2;
         this.x = x;
         this.y = y;
         isUtility = true;

@@ -132,14 +132,11 @@ public class Player {
     private void move(int move) {
         for (int i = 0; i < move; i++) {
             space++;
-            
             if (space == 40) {
                 space = 0;
                 cash += 200;
-                
             }
         }
-
         System.out.println("space = " + space);
     }
 

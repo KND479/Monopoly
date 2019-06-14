@@ -3,14 +3,17 @@ package monopoly;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import static monopoly.Monopoly.players;
 import static monopoly.Monopoly.turn;
+import static monopoly.Monopoly.spaces;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import static monopoly.Player.roll1;
 import static monopoly.Player.roll2;
-
+import static monopoly.Monopoly.IMAGE_FILE;
+import static monopoly.Monopoly.TITLE;
 
 /**
  * @author r.pablo
@@ -116,6 +119,11 @@ public class Board extends javax.swing.JFrame {
 
         btnSell.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnSell.setText("Sell");
+        btnSell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSellActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSell);
         btnSell.setBounds(1320, 820, 300, 80);
 
@@ -232,6 +240,51 @@ public class Board extends javax.swing.JFrame {
         System.out.println("turn end");
 
     }//GEN-LAST:event_btnEndActionPerformed
+
+    private void btnSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellActionPerformed
+        // TODO add your handling code here:
+        System.out.println("sell start");
+        int owned = 0;
+        System.out.println("owned declared");
+        for (int i = 0; i < spaces.length -1; i++) {
+            if(spaces[i].isProperty == true) {
+                if(spaces[i].owned == true){
+                    if (spaces[i].owner == players[turn]) {
+                        owned++;
+                        System.out.println("property owned");
+                    }
+                }
+            }
+        }
+        Space[] ownedP = new Space[owned];
+        int p = 0;
+        for (int i = 0; i < spaces.length; i++) {
+            if(spaces[i].isProperty == true) {
+                if(spaces[i].owned == true){
+                    if (spaces[i].owner == players[turn]) {
+                        ownedP[p] = spaces[i];
+                        p++;
+                    }
+                }
+            }
+        }
+        
+        String[] names = new String[owned];
+        for (int i = 0; i < owned; i++) {
+            names[i] = ownedP[i].name;
+        }
+        Icon picture = new ImageIcon(IMAGE_FILE);
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                "Select a property to sell",
+                TITLE,
+                0,
+                0,
+                picture,
+                names,
+                0);
+        
+    }//GEN-LAST:event_btnSellActionPerformed
 
     public void startGame() {
         for (int i = 0; i < players.length; i++) {
