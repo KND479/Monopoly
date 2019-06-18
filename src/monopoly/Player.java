@@ -29,6 +29,8 @@ public class Player {
     public int util = 0;
     public JLabel label;
     public int YMod;
+    public int owned;
+    public boolean jailCard;
 
     public static int amountToMove;
     public static int roll1;
@@ -53,6 +55,7 @@ public class Player {
         this.name = name;
         space = 0;
         cash = 1500;
+        owned = 0;
     }
 
     /**
@@ -77,7 +80,8 @@ public class Player {
             }
         } else {
             turns++;
-            if (roll() == true || turns == 3) {
+            if (roll() == true || turns == 3 || jailCard == true) {
+                jailCard = false;
                 jailed = false;
                 turns = 0;
                 cash -= 50;

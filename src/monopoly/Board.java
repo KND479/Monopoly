@@ -74,6 +74,7 @@ public class Board extends javax.swing.JFrame {
         btnHouse = new javax.swing.JButton();
         btnSell = new javax.swing.JButton();
         lblNumber = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         lblDeeds = new javax.swing.JLabel();
         btnEnd = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
@@ -130,6 +131,16 @@ public class Board extends javax.swing.JFrame {
         lblNumber.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(lblNumber);
         lblNumber.setBounds(1090, 10, 30, 20);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton1.setText("My Properties");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(1020, 50, 130, 150);
 
         lblDeeds.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/deeds.jpg"))); // NOI18N
         lblDeeds.setText("jLabel10");
@@ -225,7 +236,11 @@ public class Board extends javax.swing.JFrame {
         // can be used 
         btnSell.setEnabled(true); // set the button to be  enable so it
         // can be used
-        turn++; // add the turn count
+        if (turn == players.length) {
+            turn = 0;
+        } else if (turn != players.length) {
+            turn++; // add the turn count
+        }
         updateLabels();
         players[turn].takeTurn();
         lblDice1.setVisible(true);
@@ -234,57 +249,54 @@ public class Board extends javax.swing.JFrame {
         lblDice6.setIcon(new javax.swing.ImageIcon("C:\\Users\\r.pablo\\Desktop\\Will and Raden FInal Project For Computer Science 30S\\Pictures\\dice" + roll2 + ".png"));
         updateLabels();
         System.out.println(turn);
-        if (turn == players.length - 1) {
-            turn = -1;
-        }
+
         System.out.println("turn end");
 
     }//GEN-LAST:event_btnEndActionPerformed
 
     private void btnSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellActionPerformed
-        // TODO add your handling code here:
-        System.out.println("sell start");
-        int owned = 0;
-        System.out.println("owned declared");
-        for (int i = 0; i < spaces.length -1; i++) {
-            if(spaces[i].isProperty == true) {
-                if(spaces[i].owned == true){
-                    if (spaces[i].owner == players[turn]) {
-                        owned++;
-                        System.out.println("property owned");
-                    }
-                }
+        if (players[turn].owned == 0) {
+            players[turn].output("No properties to sell!");
+        } else {
+            System.out.println("sell start");
+            int owned = players[turn].owned;
+            Space[] ownedP = findProperties();
+            String[] names = new String[owned];
+            for (int i = 0; i < owned; i++) {
+                names[i] = ownedP[i].name;
             }
+            Icon picture = new ImageIcon(IMAGE_FILE);
+            int choice = JOptionPane.showOptionDialog(
+                    null,
+                    "Select a property to sell",
+                    TITLE,
+                    0,
+                    0,
+                    picture,
+                    names,
+                    0);
+            ownedP[choice].sell();
+            updateLabels();
         }
-        Space[] ownedP = new Space[owned];
-        int p = 0;
-        for (int i = 0; i < spaces.length; i++) {
-            if(spaces[i].isProperty == true) {
-                if(spaces[i].owned == true){
-                    if (spaces[i].owner == players[turn]) {
-                        ownedP[p] = spaces[i];
-                        p++;
-                    }
-                }
-            }
-        }
-        
-        String[] names = new String[owned];
-        for (int i = 0; i < owned; i++) {
-            names[i] = ownedP[i].name;
-        }
-        Icon picture = new ImageIcon(IMAGE_FILE);
-        int choice = JOptionPane.showOptionDialog(
-                null,
-                "Select a property to sell",
-                TITLE,
-                0,
-                0,
-                picture,
-                names,
-                0);
-        
     }//GEN-LAST:event_btnSellActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (players[turn].owned == 0) {
+            players[turn].output("No properties!");
+        } else {
+            Space[] ownedP = findProperties();
+            int owned = players[turn].owned;
+            String[] names = new String[owned];
+            for (int i = 0; i < owned; i++) {
+                names[i] = ownedP[i].name;
+            }
+            String properties = "";
+            for (int i = 0; i < owned; i++) {
+                properties = properties + names[i] + "\n";
+            }
+            players[turn].output(properties);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void startGame() {
         for (int i = 0; i < players.length; i++) {
@@ -297,6 +309,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHouse;
     private javax.swing.JButton btnSell;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDeeds;
     private javax.swing.JLabel lblDice1;
@@ -325,6 +338,23 @@ public class Board extends javax.swing.JFrame {
         // shows the name of the player and who turn it is
         lblTurn.setText(players[turn].name + "'s turn");
 
+    }
+
+    private Space[] findProperties() {
+        int owned = players[turn].owned;
+        Space[] ownedP = new Space[owned];
+        int p = 0;
+        for (int i = 0; i < spaces.length; i++) {
+            if (spaces[i].isProperty == true) {
+                if (spaces[i].owned == true) {
+                    if (spaces[i].owner == players[turn]) {
+                        ownedP[p] = spaces[i];
+                        p++;
+                    }
+                }
+            }
+        }
+        return ownedP;
     }
 
 }

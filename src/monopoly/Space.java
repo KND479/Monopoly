@@ -129,7 +129,16 @@ public class Space {
         owned = true;
         owner = players[turn];
         players[turn].cash -= price;
-        System.out.println(players[turn].name + " bought " + this.name
+        players[turn].output(players[turn].name + " bought " + this.name
                 + " for $" + price);
+        players[turn].owned++;
+    }
+    
+    public void sell() {
+        owned = false;
+        owner = null;
+        players[turn].cash += mort;
+        players[turn].output(players[turn].name + " mortgaged " + name + " for $" + mort);
+        players[turn].owned--;
     }
 }

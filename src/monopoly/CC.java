@@ -41,7 +41,7 @@ public class CC {
             player.cash += 50;
         } else if (num == 5) {
             player.output("Get out of Jail Card");
-            player.cash += 50;
+            player.jailCard = true;
         } else if (num == 6) {
             player.space = 0;
             player.output("Advance to GO");
